@@ -1,0 +1,306 @@
+from pandas import json_normalize
+
+import pandas as pd
+import requests
+
+import matplotlib.pyplot as plt
+
+import numpy as np
+
+# Katharina
+headers = {"x-key: 274c6b032b5456ad0ef5edfcb854b2c8"}
+r = requests.get('https://agsi.gie.eu/api/data/21W0000000000281/DE/21X000000001297T')
+#print(r)
+#print (type(r.json()))
+#print(r.json())
+
+df = json_normalize(r.json())
+df = df[~df["gasInStorage"].str.contains("-")]
+#print(df)
+
+
+# saving as a CSV file
+df.to_csv('Katharina.csv')
+
+# loading the CSV file
+new_df = pd.read_csv(r"C:\Users\qtaillefer\PycharmProjects\pythonProject3\Katharina.csv")
+
+Graph= pd.DataFrame(new_df, columns=['gasDayStartedOn', 'gasInStorage'])
+
+
+Graph=Graph.reindex(index=Graph.index[::-1])
+my_max = new_df['gasInStorage'].loc[new_df['gasInStorage'].idxmax()]
+latest=np.array(new_df['gasInStorage'].head(1))
+
+Percent=((latest)/my_max)*100
+#print(Percent)
+#print(my_max)
+font = {'family': 'serif',
+        'color':  'darkred',
+        'weight': 'normal',
+        'size': 16,
+        }
+font1 = {'family': 'serif',
+        'color':  'darkred',
+        'weight': 'normal',
+        'size': 9,
+        }
+#Graph.plot('gasDayStartedOn','gasInStorage')
+#plt.title('Katharina', fontdict=font)
+#plt.text(5, 5, "Percent of full {} %".format(Percent), fontdict=font1)
+#plt.xlabel('Date', fontdict=font)
+#plt.ylabel('Gas Storage (TWh)', fontdict=font)
+#plt.subplots_adjust(left=0.15)
+#plt.show()
+#print(Graph)
+
+#Rehden
+headers = {"x-key: 274c6b032b5456ad0ef5edfcb854b2c8"}
+r1 = requests.get('https://agsi.gie.eu/api/data/21Z000000000271O/DE/21X000000001160J')
+#print(r1)
+#print (type(r1.json()))
+#print(r1.json())
+
+df1 = json_normalize(r1.json())
+#print(df1)
+
+
+# saving as a CSV file
+df1.to_csv('Rehden.csv')
+
+# loading the CSV file
+new_df1 = pd.read_csv(r"C:\Users\qtaillefer\PycharmProjects\pythonProject3\Rehden.csv")
+
+#print(new_df1)
+
+
+Graph1= pd.DataFrame(new_df1, columns=['gasDayStartedOn', 'gasInStorage'])
+Graph1=Graph1.reindex(index=Graph1.index[::-1])
+
+my_max1 = new_df1['gasInStorage'].loc[new_df1['gasInStorage'].idxmax()]
+latest1=np.array(new_df1['gasInStorage'].head(1))
+
+Percent1=((latest1)/my_max1)*100
+#print(Percent1)
+#print(my_max)
+font = {'family': 'serif',
+        'color':  'darkred',
+        'weight': 'normal',
+        'size': 16,
+        }
+font1 = {'family': 'serif',
+        'color':  'darkred',
+        'weight': 'normal',
+        'size': 9,
+        }
+#Graph1.plot('gasDayStartedOn','gasInStorage')
+#plt.title('Rehden', fontdict=font)
+#plt.text(5, 5, "Percent of full {} %".format(Percent1), fontdict=font1)
+#plt.xlabel('Date', fontdict=font)
+#plt.ylabel('Gas Storage (TWh)', fontdict=font)
+#plt.subplots_adjust(left=0.15)
+#plt.show()
+#print(Graph1)
+#Graph['gasDayStartedOn']=Graph['gasDayStartedOn'].astype(float)
+#Graph['gasInStorage']=Graph['gasInStorage'].astype(float)
+
+#Jemgum
+
+headers = {"x-key: 274c6b032b5456ad0ef5edfcb854b2c8"}
+r2 = requests.get('https://agsi.gie.eu/api/data/21W0000000001148/DE/21X000000001160J')
+#print(r2)
+#print (type(r2.json()))
+#print(r2.json())
+
+df2 = json_normalize(r2.json())
+#print(df2)
+
+
+# saving as a CSV file
+df2.to_csv('Jemgum.csv')
+
+# loading the CSV file
+new_df2 = pd.read_csv(r"C:\Users\qtaillefer\PycharmProjects\pythonProject3\Jemgum.csv")
+
+Graph2= pd.DataFrame(new_df2, columns=['gasDayStartedOn', 'gasInStorage'])
+Graph2=Graph2.reindex(index=Graph2.index[::-1])
+
+my_max2 = new_df2['gasInStorage'].loc[new_df2['gasInStorage'].idxmax()]
+latest2=np.array(new_df2['gasInStorage'].head(1))
+
+Percent2=((latest2)/my_max2)*100
+#print(Percent2)
+#print(my_max)
+font = {'family': 'serif',
+        'color':  'darkred',
+        'weight': 'normal',
+        'size': 16,
+        }
+font1 = {'family': 'serif',
+        'color':  'darkred',
+        'weight': 'normal',
+        'size': 9,
+        }
+#Graph2.plot('gasDayStartedOn','gasInStorage')
+#plt.title('Jemgum', fontdict=font)
+#plt.text(5, 5, "Percent of full {} %".format(Percent2), fontdict=font1)
+#plt.xlabel('Date', fontdict=font)
+#plt.ylabel('Gas Storage (TWh)', fontdict=font)
+#plt.subplots_adjust(left=0.15)
+#plt.show()
+#print(Graph2)
+#Graph['gasDayStartedOn']=Graph['gasDayStartedOn'].astype(float)
+#Graph['gasInStorage']=Graph['gasInStorage'].astype(float)
+
+
+#Haidach
+
+headers = {"x-key: 274c6b032b5456ad0ef5edfcb854b2c8"}
+r3 = requests.get('https://agsi.gie.eu/api/data/21W000000000078N/AT/21X000000001160J')
+#print(r3)
+#print (type(r3.json()))
+#print(r3.json())
+
+df3 = json_normalize(r3.json())
+#print(df3)
+
+
+# saving as a CSV file
+df3.to_csv('Haidach.csv')
+
+# loading the CSV file
+new_df3 = pd.read_csv(r"C:\Users\qtaillefer\PycharmProjects\pythonProject3\Haidach.csv")
+
+Graph3= pd.DataFrame(new_df3, columns=['gasDayStartedOn', 'gasInStorage'])
+Graph3=Graph3.reindex(index=Graph3.index[::-1])
+
+my_max3 = new_df3['gasInStorage'].loc[new_df3['gasInStorage'].idxmax()]
+latest3=np.array(new_df3['gasInStorage'].head(1))
+
+Percent3=((latest3)/my_max3)*100
+#print(Percent3)
+#print(my_max)
+font = {'family': 'serif',
+        'color':  'darkred',
+        'weight': 'normal',
+        'size': 16,
+        }
+font1 = {'family': 'serif',
+        'color':  'darkred',
+        'weight': 'normal',
+        'size': 9,
+        }
+#Graph3.plot('gasDayStartedOn','gasInStorage')
+#plt.title('Haidach', fontdict=font)
+#plt.text(5, 10, "Percent of full {} %".format(Percent3), fontdict=font1)
+#plt.xlabel('Date', fontdict=font)
+#plt.ylabel('Gas Storage (TWh)', fontdict=font)
+#plt.subplots_adjust(left=0.15)
+#plt.show()
+#print(Graph3)
+#Graph['gasDayStartedOn']=Graph['gasDayStartedOn'].astype(float)
+#Graph['gasInStorage']=Graph['gasInStorage'].astype(float)
+
+#Bergermeer
+
+headers = {"x-key: 274c6b032b5456ad0ef5edfcb854b2c8"}
+r4 = requests.get('https://agsi.gie.eu/api/data/21W0000000000087/NL/21X000000001120V')
+#print(r4)
+#print (type(r4.json()))
+#print(r4.json())
+
+df4 = json_normalize(r4.json())
+#print(df4)
+
+# saving as a CSV file
+df4.to_csv('Bergermeer.csv')
+
+# loading the CSV file
+new_df4 = pd.read_csv(r"C:\Users\qtaillefer\PycharmProjects\pythonProject3\Bergermeer.csv")
+
+Graph4= pd.DataFrame(new_df4, columns=['gasDayStartedOn', 'gasInStorage'])
+Graph4=Graph4.reindex(index=Graph4.index[::-1])
+
+
+my_max4 = new_df4['gasInStorage'].loc[new_df4['gasInStorage'].idxmax()]
+latest4=np.array(new_df4['gasInStorage'].head(1))
+
+Percent4=((latest4)/my_max4)*100
+#print(Percent4)
+#print(my_max)
+font = {'family': 'serif',
+        'color':  'darkred',
+        'weight': 'normal',
+        'size': 16,
+        }
+font1 = {'family': 'serif',
+        'color':  'darkred',
+        'weight': 'normal',
+        'size': 9,
+        }
+#Graph4.plot('gasDayStartedOn','gasInStorage')
+#plt.title('Bergermeer', fontdict=font)
+#plt.text(5, 45, "Percent of full {} %".format(Percent4), fontdict=font1)
+#plt.xlabel('Date', fontdict=font)
+#plt.ylabel('Gas Storage (TWh)', fontdict=font)
+#plt.subplots_adjust(left=0.15)
+#plt.show()
+#print(Graph4)
+#Graph['gasDayStartedOn']=Graph['gasDayStartedOn'].astype(float)
+#Graph['gasInStorage']=Graph['gasInStorage'].astype(float)
+
+
+#Etzel
+
+headers = {"x-key: 274c6b032b5456ad0ef5edfcb854b2c8"}
+r5 = requests.get('https://agsi.gie.eu/api/data/21W000000000120D/DE/21X000000001138C')
+#print(r5)
+#print (type(r5.json()))
+#print(r5.json())
+
+df5 = json_normalize(r5.json())
+#print(df5)
+
+# saving as a CSV file
+df5.to_csv('Etzel.csv')
+
+# loading the CSV file
+new_df5 = pd.read_csv(r"C:\Users\qtaillefer\PycharmProjects\pythonProject3\Etzel.csv")
+
+Graph5= pd.DataFrame(new_df5, columns=['gasDayStartedOn', 'gasInStorage'])
+Graph5=Graph5.reindex(index=Graph5.index[::-1])
+
+my_max5 = new_df5['gasInStorage'].loc[new_df5['gasInStorage'].idxmax()]
+latest5=np.array(new_df5['gasInStorage'].head(1))
+
+Percent5=((latest5)/my_max5)*100
+#print(Percent5)
+#print(my_max)
+font = {'family': 'serif',
+        'color':  'darkred',
+        'weight': 'normal',
+        'size': 16,
+        }
+font1 = {'family': 'serif',
+        'color':  'darkred',
+        'weight': 'normal',
+        'size': 9,
+        }
+#Graph5.plot('gasDayStartedOn','gasInStorage')
+#plt.title('Etzel', fontdict=font)
+#plt.text(5, 1.5, "Percent of full {} %".format(Percent5), fontdict=font1)
+#plt.xlabel('Date', fontdict=font)
+#plt.ylabel('Gas Storage (TWh)', fontdict=font)
+# plt.subplots_adjust(left=0.15)
+#plt.show()
+
+
+#Graph['gasDayStartedOn']=Graph['gasDayStartedOn'].astype(float)
+#Graph['gasInStorage']=Graph['gasInStorage'].astype(float)
+
+PER=(latest+latest4+latest3+latest5+latest1+latest2)/(my_max+my_max4+my_max3+my_max2+my_max5+my_max1)
+LAT=(latest+latest4+latest3+latest5+latest1+latest2)
+MAX=(my_max+my_max4+my_max3+my_max2+my_max5+my_max1)
+print(PER)
+print(LAT)
+print(MAX)
